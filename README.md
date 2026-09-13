@@ -10,6 +10,7 @@ The exercises model common evaluation data such as experiment IDs, model setting
 
 - [x] Chapter 1 — Python Basics
 - [x] Chapter 2 — Python Functions
+- [x] Chapter 3 — Python Loops
 - [ ] Working with files and CSV data
 - [ ] Test cases and automated validation
 - [ ] Data analysis and reporting
@@ -36,6 +37,19 @@ Completed exercises cover:
 - Composing small reusable functions into an evaluation workflow
 - Separating calculation, result construction, and display responsibilities
 
+## Chapter 3 — Python Loops
+
+Completed exercises cover:
+
+- Iterating through lists with `for`
+- Using `enumerate()` for numbered output and `range()` for repeated runs
+- Counting passes, failures, generated combinations, and execution runs
+- Calculating averages from a collection of scores
+- Iterating through dictionaries with `.items()`
+- Collecting failed test cases from evaluation results
+- Processing batches of evaluation records and reporting aggregate results
+- Organizing repeated observations by baseline and structured conditions
+
 ## Skills Demonstrated
 
 - Set up VS Code for use with GitHub repository and Codex
@@ -49,6 +63,9 @@ Completed exercises cover:
 - Defining reusable functions with parameters and return values
 - Using `sum()` to calculate totals from a score collection (list or dictionary)
 - Building structured evaluation records from reusable functions
+- Using loops to process repeated evaluation observations
+- Combining loops with reusable scoring functions
+- Producing batch summaries and failure reports
 
 ## Repository Structure
 
@@ -71,6 +88,18 @@ Completed exercises cover:
 │       ├── create_evaluation_result.py
 │       ├── evaluate_scores.py
 │       └── evaluation_functions.py
+│   └── 03_loops/
+│       ├── basic_iteration.py
+│       ├── enumerate_test_cases.py
+│       ├── range_runs.py
+│       ├── calculate_result_summary.py
+│       ├── calculate_average_score.py
+│       ├── display_rubric_scores.py
+│       ├── collect_failed_cases.py
+│       ├── process_scores_with_functions.py
+│       ├── model_test_combinations.py
+│       ├── batch_evaluator.py
+│       └── count_results_by_condition.py
 ├── docs/
 │   └── engineering-log.md
 ├── requirements.txt
@@ -86,7 +115,7 @@ Requirements:
 Run an individual exercise from the repository root:
 
 ```bash
-python3 exercises/02_functions/evaluation_functions.py
+python3 exercises/03_loops/batch_evaluator.py
 ```
 
 To run every exercise:
@@ -103,16 +132,20 @@ done
 
 `evaluation_functions.py` refactors that workflow into reusable functions and returns a structured evaluation record containing metadata, named rubric scores, calculated results, and pass status.
 
+`batch_evaluator.py` processes five evaluation records automatically, produces aggregate pass/failure statistics, and lists failed test cases for investigation.
+
 Example result:
 
 ```text
-Experiment: EXP-001
-Total score: 24
-Maximum score: 25
-Percentage: 96.0%
-Passed: True
+T01 | 24/25 | 96.0% | PASS
+T02 | 20/25 | 80.0% | PASS
+T03 | 18/25 | 72.0% | FAIL
+
+Total Evaluations: 5
+Pass Rate: 60.0%
+Average Score: 83.2%
 ```
 
 ## Next Steps
 
-Extend the project by using loops.
+Extend the project by using files.

@@ -73,3 +73,55 @@ Turn the Chapter 1 scoring workflow into reusable Python functions for a clearer
 ### Next Steps
 
 Proceed to working with loops.
+
+## 2026-08-18 — Python Loops
+
+### Objective
+
+Learn to use Python iteration to process multiple AI-validation records consistently and replace repeated manual processing with reusable batch logic.
+
+### Work Completed
+
+- Practiced `for` loops with model lists and test-case collections.
+- Practiced `range()` for sequential run numbers and repeated executions.
+- Practiced `enumerate()` for numbered test-case output.
+- Iterated through lists and dictionaries, including dictionary `.items()`.
+- Implemented counters and accumulators for pass/fail totals, combinations, and average scores.
+- Used conditional logic inside loops to identify failed evaluations.
+- Combined Chapter 2 scoring functions with loops to evaluate multiple scores consistently.
+- Processed multiple structured evaluation records in a batch.
+- Calculated aggregate pass/fail metrics, including pass rate and average percentage.
+- Created a batch AI evaluation processor and a separate condition-counting exercise for baseline and structured observations.
+
+### Technical / Methodological Decisions
+
+- Used `for` loops for known evaluation collections.
+- Kept scoring logic inside reusable functions rather than duplicating it inside loops.
+- Preserved individual evaluation results before calculating aggregate statistics.
+- Recorded failed test cases separately for investigation.
+- Used an explicit 80% pass/fail threshold consistently across all cases.
+
+### Problems / Unexpected Findings
+
+- No runtime errors occurred in the completed loop exercises.
+- `range()` uses an exclusive upper bound, so `range(1, 6)` was required to produce runs 1 through 5 and `range(1, 4)` was required for three repetitions.
+- Nested loops make the number of executions grow quickly; the program counted generated executions rather than manually entering the expected total.
+
+### Lessons Learned
+
+- Loops turn one-off evaluation logic into repeatable processing for lists of models, test cases, and evaluation records.
+- Counters and accumulators allow totals, averages, pass rates, and failure lists to be derived from the data.
+- Nested loops are useful for experimental combinations such as model × test case × run.
+- Functions and loops have complementary responsibilities: functions perform a single calculation while loops apply it across many observations.
+
+### Evidence Produced
+
+- Loop practice scripts in `exercises/03_loops/`.
+- Dictionary iteration and nested-loop exercises.
+- `batch_evaluator.py`, which produces aggregate validation output and a failed-case report.
+- `count_results_by_condition.py`, which counts baseline and structured observations.
+- Git commit history and an updated README.
+
+### Next Steps
+
+Proceed to Python Files so evaluation inputs and outputs no longer need to be hardcoded directly inside Python scripts.
