@@ -1,0 +1,6 @@
+T01|Explain cloud computing.
+
+T02|Explain machine learning.
+T03|Explain REST APIs.
+
+T04|Explain cybersecurity.
