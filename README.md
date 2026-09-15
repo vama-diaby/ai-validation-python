@@ -11,7 +11,8 @@ The exercises model common evaluation data such as experiment IDs, model setting
 - [x] Chapter 1 — Python Basics
 - [x] Chapter 2 — Python Functions
 - [x] Chapter 3 — Python Loops
-- [ ] Working with files and CSV data
+- [x] Chapter 4 — Files
+- [ ] Working with CSV data
 - [ ] Test cases and automated validation
 - [ ] Data analysis and reporting
 
@@ -50,6 +51,24 @@ Completed exercises cover:
 - Processing batches of evaluation records and reporting aggregate results
 - Organizing repeated observations by baseline and structured conditions
 
+## Chapter 4 — Files
+
+### Concepts
+
+- Reading text files
+- Writing files
+- Append mode
+- Relative file paths
+- UTF-8 text handling
+- Line-by-line processing
+- Basic text parsing
+- External input datasets
+- Persistent evaluation results
+
+### AI Validation Application
+
+Refactored the batch evaluator so evaluation input is loaded from an external file and processed results are written to persistent output files. This separates validation data from evaluation logic and improves reproducibility.
+
 ## Skills Demonstrated
 
 - Set up VS Code for use with GitHub repository and Codex
@@ -66,11 +85,18 @@ Completed exercises cover:
 - Using loops to process repeated evaluation observations
 - Combining loops with reusable scoring functions
 - Producing batch summaries and failure reports
+- Loading validation inputs from external text files
+- Writing reproducible evaluation reports to output files
 
 ## Repository Structure
 
 ```text
 .
+├── data/
+│   ├── models.txt
+│   ├── test_cases.txt
+│   ├── scores.txt
+│   └── evaluation_scores.txt
 ├── exercises/
 │   └── 01_python_basics/
 │       ├── variables.py
@@ -100,6 +126,15 @@ Completed exercises cover:
 │       ├── model_test_combinations.py
 │       ├── batch_evaluator.py
 │       └── count_results_by_condition.py
+│   └── 04_files/
+│       ├── read_models.py
+│       ├── read_models_lines.py
+│       ├── write_simple_results.py
+│       ├── append_evaluation_log.py
+│       ├── load_test_cases.py
+│       ├── save_results.py
+│       ├── process_scores_file.py
+│       └── file_driven_evaluator.py
 ├── docs/
 │   └── engineering-log.md
 ├── requirements.txt
@@ -115,7 +150,7 @@ Requirements:
 Run an individual exercise from the repository root:
 
 ```bash
-python3 exercises/03_loops/batch_evaluator.py
+python3 exercises/04_files/file_driven_evaluator.py
 ```
 
 To run every exercise:
@@ -132,20 +167,20 @@ done
 
 `evaluation_functions.py` refactors that workflow into reusable functions and returns a structured evaluation record containing metadata, named rubric scores, calculated results, and pass status.
 
-`batch_evaluator.py` processes five evaluation records automatically, produces aggregate pass/failure statistics, and lists failed test cases for investigation.
+`file_driven_evaluator.py` loads evaluation scores from `data/evaluation_scores.txt`, processes each record, and writes an aggregate report to `results/evaluation_results.txt`.
 
 Example result:
 
 ```text
 T01 | 24/25 | 96.0% | PASS
 T02 | 20/25 | 80.0% | PASS
-T03 | 18/25 | 72.0% | FAIL
+T03 | 17/25 | 68.0% | FAIL
 
 Total Evaluations: 5
-Pass Rate: 60.0%
-Average Score: 83.2%
+Pass Rate: 80.0%
+Average Percentage: 86.4%
 ```
 
 ## Next Steps
 
-Extend the project by using files.
+Extend the project by reading and writing CSV data.
