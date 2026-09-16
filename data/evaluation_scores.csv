@@ -1,0 +1,7 @@
+experiment_id,test_case,condition,prompt_version,instruction_following,relevance,completeness,clarity,format_compliance
+EXP-001,T01,baseline,v1,4,4,3,4,4
+EXP-001,T01,structured,v2,5,5,4,5,5
+EXP-001,T02,baseline,v1,3,4,3,4,3
+EXP-001,T02,structured,v2,4,5,4,5,4
+EXP-001,T03,baseline,v1,3,4,5,4,5
+EXP-001,T03,structured,v2,5,5,4,5,5
