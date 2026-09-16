@@ -12,7 +12,7 @@ The exercises model common evaluation data such as experiment IDs, model setting
 - [x] Chapter 2 — Python Functions
 - [x] Chapter 3 — Python Loops
 - [x] Chapter 4 — Files
-- [ ] Working with CSV data
+- [x] Chapter 5 — CSV
 - [ ] Test cases and automated validation
 - [ ] Data analysis and reporting
 
@@ -69,6 +69,25 @@ Completed exercises cover:
 
 Refactored the batch evaluator so evaluation input is loaded from an external file and processed results are written to persistent output files. This separates validation data from evaluation logic and improves reproducibility.
 
+## Chapter 5 — CSV
+
+### Concepts
+
+- CSV rows, columns, and headers
+- Python `csv` module
+- `csv.reader()`
+- `csv.DictReader()`
+- Data type conversion
+- `csv.writer()`
+- `csv.DictWriter()`
+- Structured evaluation datasets
+- Structured result exports
+- Aggregate metric generation
+
+### AI Validation Application
+
+Replaced custom delimiter-based evaluation files with structured CSV datasets. The validation processor now loads rubric scores and experiment metadata by named columns, computes results programmatically, and exports reproducible CSV evidence including individual results, aggregate metrics, and failed cases.
+
 ## Skills Demonstrated
 
 - Set up VS Code for use with GitHub repository and Codex
@@ -87,6 +106,9 @@ Refactored the batch evaluator so evaluation input is loaded from an external fi
 - Producing batch summaries and failure reports
 - Loading validation inputs from external text files
 - Writing reproducible evaluation reports to output files
+- Loading and exporting structured CSV evaluation data
+- Converting CSV text values to numeric scores before calculation
+- Producing CSV summary and failed-case evidence
 
 ## Repository Structure
 
@@ -94,9 +116,13 @@ Refactored the batch evaluator so evaluation input is loaded from an external fi
 .
 ├── data/
 │   ├── models.txt
+│   ├── models.csv
 │   ├── test_cases.txt
 │   ├── scores.txt
-│   └── evaluation_scores.txt
+│   ├── scores.csv
+│   ├── rubric_scores.csv
+│   ├── evaluation_scores.txt
+│   └── evaluation_scores.csv
 ├── exercises/
 │   └── 01_python_basics/
 │       ├── variables.py
@@ -135,6 +161,15 @@ Refactored the batch evaluator so evaluation input is loaded from an external fi
 │       ├── save_results.py
 │       ├── process_scores_file.py
 │       └── file_driven_evaluator.py
+│   └── 05_csv/
+│       ├── read_models_csv.py
+│       ├── read_models_dict_reader.py
+│       ├── convert_score_types.py
+│       ├── calculate_csv_percentages.py
+│       ├── write_processed_scores_csv.py
+│       ├── process_rubric_scores_csv.py
+│       ├── aggregate_rubric_results.py
+│       └── csv_evaluator.py
 ├── docs/
 │   └── engineering-log.md
 ├── requirements.txt
@@ -150,7 +185,7 @@ Requirements:
 Run an individual exercise from the repository root:
 
 ```bash
-python3 exercises/04_files/file_driven_evaluator.py
+python3 exercises/05_csv/csv_evaluator.py
 ```
 
 To run every exercise:
@@ -167,20 +202,20 @@ done
 
 `evaluation_functions.py` refactors that workflow into reusable functions and returns a structured evaluation record containing metadata, named rubric scores, calculated results, and pass status.
 
-`file_driven_evaluator.py` loads evaluation scores from `data/evaluation_scores.txt`, processes each record, and writes an aggregate report to `results/evaluation_results.txt`.
+`csv_evaluator.py` loads rubric scores and experiment metadata from `data/evaluation_scores.csv`, then writes individual results, summary metrics, and failed cases to CSV output files.
 
 Example result:
 
 ```text
-T01 | 24/25 | 96.0% | PASS
-T02 | 20/25 | 80.0% | PASS
-T03 | 17/25 | 68.0% | FAIL
+T01 baseline | 19/25 | 76.0% | FAIL
+T01 structured | 24/25 | 96.0% | PASS
+T02 baseline | 17/25 | 68.0% | FAIL
 
-Total Evaluations: 5
-Pass Rate: 80.0%
-Average Percentage: 86.4%
+Total Evaluations: 6
+Pass Rate: 66.7%
+Average Percentage: 84.7%
 ```
 
 ## Next Steps
 
-Extend the project by reading and writing CSV data.
+Extend the project with test cases and automated validation.

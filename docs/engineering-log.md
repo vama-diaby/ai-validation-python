@@ -182,3 +182,63 @@ Learn to read and write external files so AI-validation datasets and results can
 ### Next Steps
 
 Proceed to CSV so tabular evaluation datasets can be represented and processed using a standard structured format instead of custom delimiter parsing.
+
+## 2026-08-20 — CSV
+
+### Objective
+
+Replace custom text-delimited evaluation files with structured CSV datasets and generate machine-readable AI-validation result files.
+
+### Work Completed
+
+- Learned CSV row, column, and header concepts.
+- Used Python's built-in `csv` module.
+- Practiced `csv.reader()` and `csv.DictReader()`.
+- Converted CSV score values from strings to integers.
+- Loaded structured evaluation records from CSV.
+- Reused scoring and pass/fail functions from earlier chapters in CSV exercises.
+- Practiced `csv.writer()` and `csv.DictWriter()`.
+- Generated structured result CSV files.
+- Calculated aggregate validation metrics.
+- Generated failed-case evidence.
+- Built a CSV-driven AI validation processor.
+- Worked with Codex to implement scoped exercises, inspect outputs, explain Python concepts, and revise code into a more beginner-friendly form where needed.
+- Asked and resolved why `csv.reader()` returns each row as a list, how a dictionary entry is created in a loop, and why explicit loops can be easier to read than dictionary comprehensions when learning.
+- Asked and resolved why returned values are not displayed automatically and why Python statements must be run in a Python interpreter rather than at a Bash prompt.
+
+### Technical / Methodological Decisions
+
+- Used `csv.DictReader()` for evaluation datasets to access fields by meaningful column names.
+- Used `csv.DictWriter()` for structured result output.
+- Used UTF-8 encoding and `newline=""`.
+- Preserved source rubric scores and experiment metadata in generated results.
+- Kept input datasets separate from generated result files.
+- Reused existing calculation functions in CSV exercises instead of duplicating scoring logic in loops.
+- Kept the CSV evaluator modular by separating loading, calculation, result construction, summary, and output functions.
+
+### Problems / Unexpected Findings
+
+- CSV values are read as strings, so score fields had to be converted with `int()` before calculation.
+- Importing Chapter 2 functions from a directly executed Chapter 5 script initially failed because Python's module path started in the exercise directory rather than the repository root. Adding the project root to the module search path allowed the existing function to be reused.
+- The completed datasets did not contain blank cells or malformed rows, but the loaders depend on the expected headers and numeric score fields being present.
+
+### Lessons Learned
+
+- CSV provides a simple, standard schema for tabular evaluation datasets that is easier to inspect and exchange than custom delimiter parsing.
+- Headers and `DictReader()` preserve field meaning, making metadata and score access clearer than positional indexes.
+- Type conversion is essential because parsed CSV values begin as text.
+- Structured result CSVs preserve individual outcomes, aggregate metrics, and failure evidence in machine-readable form.
+- Questions about output types, dictionaries, return values, and terminal contexts helped connect the code's behavior to the underlying Python concepts.
+- Collaborating with Codex was effective for translating specific requirements into working exercises, while running the scripts and reviewing the code ensured the implementation matched the intended data flow.
+
+### Evidence Produced
+
+- CSV reading and writing exercises in `exercises/05_csv/`.
+- Structured evaluation datasets in `data/`.
+- Evaluation results CSV, evaluation summary, and failed-case report generated under `results/`.
+- A modular CSV-driven evaluator.
+- Git commit history and an updated README.
+
+### Next Steps
+
+Proceed to JSON to represent nested AI-validation records and prepare for the structured request and response formats commonly used by APIs.
